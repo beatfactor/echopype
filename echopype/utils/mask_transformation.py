@@ -215,7 +215,7 @@ def dis2speed(t, dis):
     speed = np.r_[np.nan, speed]
     
     return speed
-def twod(data, idim, jdim, irvals, jrvals, log=False, operation='mean'):
+def twod(data, idim, jdim, irvals, jrvals, log_var=False, operation='mean'):
     """
     Resample down an array along the two dimensions, i and j.
     
@@ -253,7 +253,7 @@ def twod(data, idim, jdim, irvals, jrvals, log=False, operation='mean'):
             raise Exception('j resampling intervals must be within jdim range')
         
     # convert data to linear, if logarithmic
-    if log is True:
+    if log_var is True:
         data = lin(data)
     
     # get i/j axes from i/j dimensions and i/j intervals
@@ -322,7 +322,7 @@ def twod(data, idim, jdim, irvals, jrvals, log=False, operation='mean'):
                 percentage[i, j]  = np.nansum(  w_)/np.nansum(w )*100                        
     
     # convert back to logarithmic, if data was logarithmic
-    if log is True:
+    if log_var is True:
         datar = log(datar)
     
     # get resampled dimensions from resampling intervals
